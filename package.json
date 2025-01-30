@@ -1,0 +1,12 @@
+{
+  "name": "api_automation_using_mocha_axios_on_dmoney",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
