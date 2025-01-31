@@ -1,9 +1,10 @@
 import {config} from "dotenv";
 import axios from "axios";
 import {expect} from 'chai';
-import { faker } from '@faker-js/faker';
+import {da, faker} from '@faker-js/faker';
 
 import myUtils from "./myUtils.js";
+import userList from "./user-list.json" assert {type: "json"};
 
 config();
 const baseUrl = process.env.baseUrl;
@@ -46,6 +47,14 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.setEnv("agentId", data.user.id);
         myUtils.setEnv("agentEmail", data.user.email);
         myUtils.setEnv("agentPhoneNumber", data.user.phone_number);
+
+        let newUser = {
+            "id": data.user.id,
+            "email": data.user.email,
+            "phoneNumber": data.user.phone_number,
+            "role": data.user.role
+        };
+        myUtils.saveUser(newUser);
     });
 
     it("2. Create Customer 1", async () => {
@@ -71,6 +80,14 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.setEnv("customer1Id", data.user.id);
         myUtils.setEnv("customer1Email", data.user.email);
         myUtils.setEnv("customer1PhoneNumber", data.user.phone_number);
+
+        let newUser = {
+            "id": data.user.id,
+            "email": data.user.email,
+            "phoneNumber": data.user.phone_number,
+            "role": data.user.role + "1"
+        };
+        myUtils.saveUser(newUser);
     });
 
     it("2. Create Customer 2", async () => {
@@ -96,6 +113,14 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.setEnv("customer2Id", data.user.id);
         myUtils.setEnv("customer2Email", data.user.email);
         myUtils.setEnv("customer2PhoneNumber", data.user.phone_number);
+
+        let newUser = {
+            "id": data.user.id,
+            "email": data.user.email,
+            "phoneNumber": data.user.phone_number,
+            "role": data.user.role + "2"
+        };
+        myUtils.saveUser(newUser);
     });
 
     it("2. Create Merchant", async () => {
@@ -121,6 +146,14 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.setEnv("merchantId", data.user.id);
         myUtils.setEnv("merchantEmail", data.user.email);
         myUtils.setEnv("merchantPhoneNumber", data.user.phone_number);
+
+        let newUser = {
+            "id": data.user.id,
+            "email": data.user.email,
+            "phoneNumber": data.user.phone_number,
+            "role": data.user.role
+        };
+        myUtils.saveUser(newUser);
     });
 
     it("3. Give 2000 tk from System account to the newly created agent", async () => {

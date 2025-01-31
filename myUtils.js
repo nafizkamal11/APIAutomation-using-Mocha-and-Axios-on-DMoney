@@ -1,6 +1,31 @@
 import fs from 'fs';
 import path from 'path';
 
+import userList from "./user-list.json" assert {type: "json"};
+
+const saveUser = (newUser) => {
+    let added = false;
+    for (let key in userList) {
+        if (userList[key].role === newUser.role) {
+            userList[key] = newUser;
+            added = true;
+            break;
+        }else if(userList[key].role === "Customer1" && newUser.role === "Customer1") {
+            userList[key] = newUser;
+            added = true;
+            break;
+        }else if(userList[key].role === "Customer2" && newUser.role === "Customer2") {
+            userList[key] = newUser;
+            added = true;
+            break;
+        }
+    }
+    if(!added) {
+        userList.push(newUser);
+    }
+    fs.writeFileSync('./user-list.json', JSON.stringify(userList, null, 2));
+};
+
 const setEnv = (key, value) => {
     const filePath = path.join(process.cwd(), '.env');
     const file = fs.readFileSync(filePath, 'utf8');
@@ -34,4 +59,4 @@ const phoneNumber = ()=>{
     return prefix + randomDigits;
 }
 
-export default {phoneNumber, setEnv};
+export default {phoneNumber, setEnv, saveUser};

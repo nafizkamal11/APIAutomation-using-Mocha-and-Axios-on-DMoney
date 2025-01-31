@@ -1,0 +1,26 @@
+[
+  {
+    "id": 41878,
+    "email": "abigale.zulauf@roadtocareer.net",
+    "phoneNumber": "01236459490",
+    "role": "Agent"
+  },
+  {
+    "id": 41879,
+    "email": "matteo.mills@roadtocareer.net",
+    "phoneNumber": "01237752984",
+    "role": "Customer1"
+  },
+  {
+    "id": 41880,
+    "email": "rosario.fahey@roadtocareer.net",
+    "phoneNumber": "01236703777",
+    "role": "Customer2"
+  },
+  {
+    "id": 41881,
+    "email": "alessia.hamill-durgan@roadtocareer.net",
+    "phoneNumber": "01238180144",
+    "role": "Merchant"
+  }
+]
