@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha index.js"
+    "start": "node reportGenerator.js",
+    "test": "node testrunner.js"
   },
   "keywords": [],
   "type": "module",
@@ -17,6 +18,8 @@
     "dotenv": "^16.4.7",
     "fs": "^0.0.1-security",
     "mocha": "^11.1.0",
-    "path": "^0.12.7"
+    "mochawesome": "^7.1.3",
+    "path": "^0.12.7",
+    "shelljs": "^0.8.5"
   }
 }

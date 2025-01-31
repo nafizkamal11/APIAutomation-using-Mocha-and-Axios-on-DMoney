@@ -1,7 +1,7 @@
 import {config} from "dotenv";
 import axios from "axios";
 import {expect} from 'chai';
-import {da, faker} from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 
 import myUtils from "./myUtils.js";
 import userList from "./user-list.json" assert {type: "json"};
