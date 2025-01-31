@@ -9,6 +9,11 @@ import userList from "./user-list.json" assert {type: "json"};
 config();
 const baseUrl = process.env.baseUrl;
 
+const agent = 0;
+const customer1 = 1;
+const customer2 = 2;
+const merchant = 3;
+
 describe("API automation using mocha and axios on DMoney", () => {
     it("1. Login by admin", async () => {
         let {data} = await axios.post(`${baseUrl}/user/login`, {
@@ -44,10 +49,6 @@ describe("API automation using mocha and axios on DMoney", () => {
         });
         expect(data.message).to.equal("User created");
 
-        myUtils.setEnv("agentId", data.user.id);
-        myUtils.setEnv("agentEmail", data.user.email);
-        myUtils.setEnv("agentPhoneNumber", data.user.phone_number);
-
         let newUser = {
             "id": data.user.id,
             "email": data.user.email,
@@ -76,10 +77,6 @@ describe("API automation using mocha and axios on DMoney", () => {
             }
         });
         expect(data.message).to.equal("User created");
-
-        myUtils.setEnv("customer1Id", data.user.id);
-        myUtils.setEnv("customer1Email", data.user.email);
-        myUtils.setEnv("customer1PhoneNumber", data.user.phone_number);
 
         let newUser = {
             "id": data.user.id,
@@ -110,10 +107,6 @@ describe("API automation using mocha and axios on DMoney", () => {
         });
         expect(data.message).to.equal("User created");
 
-        myUtils.setEnv("customer2Id", data.user.id);
-        myUtils.setEnv("customer2Email", data.user.email);
-        myUtils.setEnv("customer2PhoneNumber", data.user.phone_number);
-
         let newUser = {
             "id": data.user.id,
             "email": data.user.email,
@@ -143,10 +136,6 @@ describe("API automation using mocha and axios on DMoney", () => {
         });
         expect(data.message).to.equal("User created");
 
-        myUtils.setEnv("merchantId", data.user.id);
-        myUtils.setEnv("merchantEmail", data.user.email);
-        myUtils.setEnv("merchantPhoneNumber", data.user.phone_number);
-
         let newUser = {
             "id": data.user.id,
             "email": data.user.email,
@@ -159,7 +148,7 @@ describe("API automation using mocha and axios on DMoney", () => {
     it("3. Give 2000 tk from System account to the newly created agent", async () => {
         let {data} = await axios.post(`${baseUrl}/transaction/deposit`, {
             "from_account": "SYSTEM",
-            "to_account": `${process.env.agentPhoneNumber}`,
+            "to_account": `${userList[agent].phoneNumber}`,
             "amount": 2000
         }, {
             headers: {
@@ -173,8 +162,8 @@ describe("API automation using mocha and axios on DMoney", () => {
 
     it("4. Deposit 1500 tk to customer1 from the agent account", async () => {
         let {data} = await axios.post(`${baseUrl}/transaction/deposit`, {
-            "from_account": `${process.env.agentPhoneNumber}`,
-            "to_account": `${process.env.customer1PhoneNumber}`,
+            "from_account": `${userList[agent].phoneNumber}`,
+            "to_account": `${userList[customer1].phoneNumber}`,
             "amount": 1500
         }, {
             headers: {
@@ -186,10 +175,10 @@ describe("API automation using mocha and axios on DMoney", () => {
         expect(data.message).to.equal("Deposit successful");
     })
 
-    it("5. Withdraw 500 tk by the customer to the agent", async () => {
+    it("5. Withdraw 500 tk by the customer1 to the agent", async () => {
         let {data} = await axios.post(`${baseUrl}/transaction/withdraw`, {
-            "from_account": `${process.env.customer1PhoneNumber}`,
-            "to_account": `${process.env.agentPhoneNumber}`,
+            "from_account": `${userList[customer1].phoneNumber}`,
+            "to_account": `${userList[agent].phoneNumber}`,
             "amount": 500
         }, {
             headers: {
@@ -203,8 +192,8 @@ describe("API automation using mocha and axios on DMoney", () => {
 
     it("6. Send money 500 tk to another customer", async () => {
         let {data} = await axios.post(`${baseUrl}/transaction/sendmoney`, {
-            "from_account": `${process.env.customer1PhoneNumber}`,
-            "to_account": `${process.env.customer2PhoneNumber}`,
+            "from_account": `${userList[customer1].phoneNumber}`,
+            "to_account": `${userList[customer2].phoneNumber}`,
             "amount": 500
         }, {
             headers: {
@@ -218,8 +207,8 @@ describe("API automation using mocha and axios on DMoney", () => {
 
     it("7. Payment 100 tk to any merchant by the recipient customer", async () => {
         let {data} = await axios.post(`${baseUrl}/transaction/payment`, {
-            "from_account": `${process.env.customer1PhoneNumber}`,
-            "to_account": `${process.env.merchantPhoneNumber}`,
+            "from_account": `${userList[customer2].phoneNumber}`,
+            "to_account": `${userList[merchant].phoneNumber}`,
             "amount": 100
         }, {
             headers: {
@@ -231,8 +220,8 @@ describe("API automation using mocha and axios on DMoney", () => {
         expect(data.message).to.equal("Payment successful");
     })
 
-    it("8. Check balance of the recipient customer1", async () => {
-        let {data} = await axios.get(`${baseUrl}/transaction/balance/${process.env.customer1PhoneNumber}`, {
+    it("8. Check balance of the recipient customer", async () => {
+        let {data} = await axios.get(`${baseUrl}/transaction/balance/${userList[customer2].phoneNumber}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${process.env.token}`,
@@ -240,6 +229,6 @@ describe("API automation using mocha and axios on DMoney", () => {
             }
         });
         expect(data.message).to.include("User balance");
-        console.log(data.balance);
+        // console.log(data.balance);
     })
 })
