@@ -3,8 +3,8 @@ import axios from "axios";
 import {expect} from 'chai';
 import {faker} from '@faker-js/faker';
 
-import myUtils from "./myUtils.js";
-import userList from "./user-list.json" assert {type: "json"};
+import myUtils from "../utils/myUtils.js";
+import userList from "../user-list.json" assert {type: "json"};
 
 config();
 const baseUrl = process.env.baseUrl;
@@ -29,7 +29,7 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.setEnv("token", data.token);
     });
 
-    it("2. Create a agent", async () => {
+    it("2a. Create a agent", async () => {
         let firstName = faker.person.firstName();
         let lastName = faker.person.lastName();
 
@@ -58,7 +58,7 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.saveUser(newUser);
     });
 
-    it("2. Create Customer 1", async () => {
+    it("2b. Create Customer 1", async () => {
         let firstName = faker.person.firstName();
         let lastName = faker.person.lastName();
 
@@ -87,7 +87,7 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.saveUser(newUser);
     });
 
-    it("2. Create Customer 2", async () => {
+    it("2c. Create Customer 2", async () => {
         let firstName = faker.person.firstName();
         let lastName = faker.person.lastName();
 
@@ -116,7 +116,7 @@ describe("API automation using mocha and axios on DMoney", () => {
         myUtils.saveUser(newUser);
     });
 
-    it("2. Create Merchant", async () => {
+    it("2d. Create Merchant", async () => {
         let firstName = faker.person.firstName();
         let lastName = faker.person.lastName();
 

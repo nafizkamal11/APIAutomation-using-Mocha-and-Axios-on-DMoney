@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import userList from "./user-list.json" assert {type: "json"};
+import userList from "../user-list.json" assert {type: "json"};
 
 const saveUser = (newUser) => {
     let added = false;

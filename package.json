@@ -1,10 +1,10 @@
 {
   "name": "api_automation_using_mocha_axios_on_dmoney",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "test/dmoney.test.js",
   "scripts": {
-    "start": "node reportGenerator.js",
-    "test": "node testrunner.js"
+    "start": "node testRunner/reportGenerator.js",
+    "test": "node testRunner/testrunner.js"
   },
   "keywords": [],
   "type": "module",
