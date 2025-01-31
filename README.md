@@ -82,7 +82,7 @@ This script (`testRunner/reportGenerator.js`) creates a detailed report of your 
 
 Below is a screenshot of the generated Mochawesome report:
 
-![image](https://github.com/user-attachments/assets/285d9460-10c4-43e8-b7b6-42fb3049316a)
+![image](https://github.com/user-attachments/assets/499880ca-0bff-472c-a0ad-eff00853d7e4)
 
 ## Dependencies
 
