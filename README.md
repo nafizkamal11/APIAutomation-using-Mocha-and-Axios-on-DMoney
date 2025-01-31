@@ -57,27 +57,6 @@ The automated test script performs the following steps:
     npm install
     
     ```
-    
-3. **Setup .gitignore**
-    
-    Ensure that your `.gitignore` file includes:
-    
-    ```
-    node_modules/
-    package-lock.json
-    
-    ```
-
-## Environment Variables
-
-Create a `.env` file in the root directory and add the following (adjust the values as necessary):
-
-```
-BASE_URL=https://dmoney.roadtocareer.net
-PARTNER_KEY=your_partner_key_here
-TOKEN=your_token_here
-
-```
 
 ## Running the Tests
 
